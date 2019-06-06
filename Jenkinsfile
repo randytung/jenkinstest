@@ -19,7 +19,9 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                retry(3) {
+                    sh './flakey-deploy.sh'
+                }
             }
         }
     }
